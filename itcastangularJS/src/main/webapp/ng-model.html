@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-model案例</title>
+    <script src="js/angular.min.js"></script>
+</head>
+<!-- ng-model 将一个输入框的内容绑定到模型部分,如模型中没有则自动创建一个-->
+<body ng-app>
+  <div>
+      名字:<input ng-model="name"/>
+  </div>
+  <br>
+  <div>ng-model:{{name}}</div>
+  <br>
+    模型部分<input type="text" value="{{name}}"/>
+</body>
+</html>

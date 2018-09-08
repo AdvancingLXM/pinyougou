@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ng-controller案例</title>
+    <script src="js/angular.min.js"></script>
+
+
+    <script type="text/javascript">
+        //创建angular模块
+        //参数一:模块名称
+        //参数二:要加载的其他模块的列表,如果没有也要加一个空的数组,不加表示获取一个模块
+        var app =angular.module("app",[]);
+
+        //定义处理器(与ng-controller中名字一致),.
+        // 参数二:处理器执行体
+        // $scope上下文:可以获取在视图中双向绑定的那些表单项,或者$scope定义的任何东西都可以在视图中引用
+        //注入内置网络服务对象$http
+        app.controller("myController",function ($scope,$http) {
+          $http.get("data.json").success(function (response) {//response为返回的数据
+              $scope.persons = response;
+          }).error(function () {
+              alert("获取数据失败");
+          });
+        });
+
+    </script>
+
+
+</head>
+<!-- ng-controller -->
+<body ng-app="app" ng-controller="myController">
+  <!-- num为循环变量,in关键字不可变,list集合-->
+  <div ng-repeat="num in list">
+      {{num}}<br>
+  </div>
+
+
+  <table>
+      <thead>
+      <tr>
+          <td>id</td>
+          <td>名称</td>
+          <td>性别</td>
+      </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="p in persons">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.gender}}</td>
+        </tr>
+      </tbody>
+  </table>
+</body>
+</html>
